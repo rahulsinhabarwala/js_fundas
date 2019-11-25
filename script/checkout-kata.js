@@ -7,6 +7,7 @@ var priceD = 15;
  * 3*A =130
  * 2*B =45
  */
+let inventory = ['A','B','C','D']
 let disCountedItem =['A','B']
 
 function getItemCost(item,itemCount){
@@ -20,10 +21,15 @@ function getItemCost(item,itemCount){
             default : console.log(item);
         }
     }
-    else{
+    else if(inventory.indexOf(item) != -1){
         return itemCount * window['price'+`${item}`]
     }
+    else{
+        console.log(`the item ${item} is not avialable in Inventory`);
+        return null
+    }
 }
+
 
  function checkOutTotal(itemsArray){
     let occranceCounter = new Object();
@@ -48,5 +54,5 @@ function getItemCost(item,itemCount){
      
  }
 
- let totalSum = checkOutTotal(['C','A','A','D','B','B','B','B']);
+ let totalSum = checkOutTotal(['C','A','A','D','B','B','B','B','X','A']);
  console.log(totalSum)
