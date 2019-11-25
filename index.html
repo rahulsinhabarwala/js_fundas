@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="import" href="/myComponent.html">
+    <title>Document</title>
+    <style>
+        h1{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Document header</h1>
+    <my-component></my-component>
+    <template id='my-component'>
+            <style>
+                h1{
+                    color : purple;
+                }
+            </style>
+            <h1>
+                component heading
+            </h1>
+    </template>
+    <script>
+            class MyComponent extends HTMLElement{
+                constructor(){
+                    super();
+                    let shadowdom = this.attachShadow({mode : 'open'});
+                    let template = document.getElementById('my-component');
+                    let templateHtml = template.content.cloneNode(true);
+                    shadowdom.appendChild(templateHtml);
+                   }
+            }
+       
+            customElements.define('my-component',MyComponent);
+           
+    </script>
+
+    <script src="./script/checkout-kata.js"></script>
+    <!-- <script src='./script/custom-component.js'></script> -->
+    <!-- <script src='./script/event-loop.js'></script> -->
+</body>
+</html>
